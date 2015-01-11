@@ -1,0 +1,216 @@
+<html lang="zh-CN"> 
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="description" content="Description..." />
+    <meta name="keywords" content="" />
+    <meta name="renderer" content="webkit|ie-comp|ie-stand" />
+    <meta name="author" content="rusherwang">
+
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <style type="text/css">
+        body,
+        div,
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: #000;
+        }
+        ul {
+            list-style: none;
+            text-align: center;
+        }
+        li {
+            line-height: 400px;
+            font-size: 30px;
+            font-weight: bold;
+        }
+        .scroll-me {
+            margin: 0 auto;
+            width: 400px;
+            margin-top: 50px;
+        }
+        .my-list {
+            width: 400px;
+            background: #fff;
+            height: 650px;
+        }
+
+        .scroll-me3 {
+            position: fixed;
+            width: 200px;
+            top: 10px;
+            left: 10px;
+        }
+        .my-list3 {
+            width: 200px;
+            background: #fff;
+            height: 650px;
+        }
+
+        /* 这是必要的css */
+        .scroll-me {
+            overflow: hidden;
+        }
+        .scroll-list {
+            width: 100%;
+        }
+        .scroll-list-wrap {
+            overflow: hidden;
+        }
+        .relative {
+            position: relative;
+        }
+        /* 这是滚动条背景样式 */
+        .scroll-bg {
+            position: absolute;
+            right: 4px;
+            top: 0;
+            border-radius: 4px;
+            width: 8px;
+            background: #fff;
+        }
+        /* 这是滚动块样式 */
+        .scroll-block {
+            border-radius: 4px;
+            width: 8px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #000;
+            opacity: .6;
+        }
+        .moved {
+            transition: transform .3s ease;
+        }
+        /* 这是移动过程中给滚动条加的class */
+        .scroll-scrolling {
+            background: #ccc;
+        }
+        /* 这里可以设置移动过程中滚动块的样式 */
+        .scroll-scrolling .scroll-block {
+            opacity: .9;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-me" id="scrollMe" data-scroll="scrollMe">
+        <div class="relative">
+            <div class="my-list scroll-list-wrap" id="scrollListWrap">
+                <ul class="my-data scroll-list moved" id="scrollList">
+                    <li>
+                        1
+                    </li>
+                    <li>
+                        2
+                    </li>
+                    <li>
+                        3
+                    </li>
+                    <li>
+                        4
+                    </li>
+                    <li>
+                        5
+                    </li>
+                </ul>
+            </div>
+            <div class="scroll-bg" id="scrollBg">
+                <div class="scroll-block" id="scrollBlock"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="scroll-me" id="scrollMe2" data-scroll="scrollMe2">
+        <div class="relative">
+            <div class="my-list3 scroll-list-wrap" id="scrollListWrap2">
+                <ul class="my-data3 scroll-list moved" id="scrollList2">
+                    <li>
+                        1
+                    </li>
+                    <li>
+                        2
+                    </li>
+                    <li>
+                        3
+                    </li>
+                    <li>
+                        4
+                    </li>
+                    <li>
+                        5
+                    </li>
+                </ul>
+            </div>
+            <div class="scroll-bg" id="scrollBg2">
+                <div class="scroll-block" id="scrollBlock2"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="scroll-me3" id="scrollMe3" data-scroll="scrollMe3">
+        <div class="relative">
+            <div class="my-list3 scroll-list-wrap" id="scrollListWrap3">
+                <ul class="my-data3 scroll-list moved" id="scrollList3">
+                    <li>
+                        1
+                    </li>
+                    <li>
+                        2
+                    </li>
+                    <li>
+                        3
+                    </li>
+                    <li>
+                        4
+                    </li>
+                    <li>
+                        5
+                    </li>
+                </ul>
+            </div>
+            <div class="scroll-bg" id="scrollBg3">
+                <div class="scroll-block" id="scrollBlock3"></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="scroll.min.js"></script>
+    <script type="text/javascript">
+    var doc = document.documentElement,
+        scrollMe = Scroll({
+            contain: 'scrollList',           // 容器id
+            wrap: 'scrollListWrap',          // 包裹id
+            scrollBg: 'scrollBg',            // 滚动条背景id
+            scrollBlock: 'scrollBlock',      // 滚动块id
+            heightFix: 400                   // 滚动区域固定高度
+
+        }),
+        scrollMe2 = Scroll({
+            contain: 'scrollList2',
+            wrap: 'scrollListWrap2',
+            scrollBg: 'scrollBg2',
+            scrollBlock: 'scrollBlock2',
+            heightFix: 200
+        }),
+        scrollMe3 = Scroll({
+            contain: 'scrollList3',
+            wrap: 'scrollListWrap3',
+            scrollBg: 'scrollBg3',
+            scrollBlock: 'scrollBlock3',
+            factHeightDiff: 20              // position:fixed 时可以设置比屏幕高度相差的距离
+        });
+
+    // 初始化,可以配合 onresize或者ajax获取数据后 使用
+    scrollMe.init(doc.clientWidth, doc.clientHeight);       
+    scrollMe2.init(doc.clientWidth, doc.clientHeight);
+    scrollMe3.init(doc.clientWidth, doc.clientHeight);
+    </script>
+</body>
+</html>
+
+
